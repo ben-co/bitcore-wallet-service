@@ -21,7 +21,7 @@ var config = {
 
   storageOpts: {
     mongoDb: {
-      uri: 'mongodb://localhost:27017/bws',
+      uri: process.env.MONGO_URI,
     },
   },
   lockOpts: {
@@ -45,7 +45,8 @@ var config = {
       },
       testnet: {
         provider: 'insight',
-        url: 'https://test-insight.bitpay.com:443',
+        url: process.env.INSIGHT_TESTNET,
+        apiPrefix: '/insight-api'
         // Multiple servers (in priority order)
         // url: ['http://a.b.c', 'https://test-insight.bitpay.com:443'],
       },

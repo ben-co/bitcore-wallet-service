@@ -29,6 +29,19 @@ run_program ()
   fi
 }
 
+if [ "$CWB_ENV" == "dev" ]
+then
+   export MONGO_URI=mongodb://bws:buy-eth-with-bitcoin@SG-BWSDevUSWest2-15143.servers.mongodirector.com:27017/bws
+   export INSIGHT_TESTNET='http://10.192.10.69:3001'
+elif [ "$CWB_ENV" == "stage" ]
+then
+   export MONGO_URI=mongodb://bws:buy-eth-with-bitcoin@SG-BWSStage-14454.servers.mongodirector.com:27017/bws
+   export INSIGHT_TESTNET='https://test-insight.bitpay.com:443'
+else
+   export MONGO_URI=mongodb://bws:buy-eth-with-bitcoin@SG-BWSProdUSWest1v2-12760.servers.mongodirector.com:27017/bws
+   export INSIGHT_TESTNET='https://test-insight.bitpay.com:443'
+fi
+
 run_program locker/locker.js pids/locker.pid logs/locker.log
 run_program messagebroker/messagebroker.js pids/messagebroker.pid logs/messagebroker.log
 run_program bcmonitor/bcmonitor.js pids/bcmonitor.pid logs/bcmonitor.log
