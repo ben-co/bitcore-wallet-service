@@ -41,7 +41,7 @@ var config = {
     btc: {
       livenet: {
         provider: 'insight',
-        url: 'https://insight.bitpay.com:443',
+        url: process.env.INSIGHT_URL,
       },
       testnet: {
         provider: 'insight',
